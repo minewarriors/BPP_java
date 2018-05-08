@@ -9,7 +9,7 @@ public class RandomOrder {
 
     public RandomOrder() {
         Random random = new Random();
-        for (int i = 0; i <= random.nextInt(6); i++) {
+        for (int i = 1; i <= (random.nextInt(5)+ 2); i++) {
             productArray.add(new Product((i + 1), (random.nextInt(5) + 1), (random.nextInt(5) + 1), String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1)*10));
         }
     }
