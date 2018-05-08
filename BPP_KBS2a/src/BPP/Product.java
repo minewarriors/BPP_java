@@ -1,4 +1,4 @@
-package BBP;
+package BPP;
 
 public class Product {
 

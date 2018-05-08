@@ -1,4 +1,4 @@
-package BBP;
+package BPP;
 
 public class Main {
         public static void main(String[] args) {
