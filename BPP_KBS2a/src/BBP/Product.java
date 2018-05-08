@@ -2,7 +2,6 @@ package BBP;
 
 public class Product {
 
-<<<<<<< HEAD
     private int productId;
     private int x;
     private int y;
@@ -41,8 +40,4 @@ public class Product {
     public String toString() {
         return "Product{" + "productId=" + productId + ", x=" + x + ", y=" + y + ", color=" + color + ", size=" + size + '}';
     }
-    
-    
-=======
->>>>>>> 802c75f5957f8fc2893ee121e69e05409b2fc5b9
 }
