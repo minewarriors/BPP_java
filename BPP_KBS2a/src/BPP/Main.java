@@ -3,13 +3,16 @@ package BPP;
 public class Main {
         public static void main(String[] args) {
 
-           Product A1 = new Product(1,2,3,"green","M");
-           Product A2 = new Product("green","M");
-           System.out.println(A1);
-           System.out.println(A2);
+           Product A1 = new Product(1,2,3,"green",10);
+           Product A2 = new Product("green",10);
+          // System.out.println(A1);
+          // System.out.println(A2);
            
            RandomProductArray b2 = new RandomProductArray();
-           System.out.println(b2);
+           b2.print();
+           System.out.println(b2.getSize());
+           System.out.println(b2.getProductSize(1));
+           System.out.println(b2.getProductColor(1));
     }
         
 }
