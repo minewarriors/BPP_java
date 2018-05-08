@@ -12,5 +12,11 @@ public class RandomProductArray {
         productArray.add(new Product("orange", "S"));
     }
 
-
-}
+    @Override
+    public String toString() {
+        for (Product x : productArray) {
+            return(x.getSize());
+        }
+    }
+        
+    

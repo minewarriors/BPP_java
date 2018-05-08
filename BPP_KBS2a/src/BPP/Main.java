@@ -8,6 +8,8 @@ public class Main {
            System.out.println(A1);
            System.out.println(A2);
            
+           RandomProductArray b2 = new RandomProductArray();
+           System.out.println(b2);
     }
         
 }
