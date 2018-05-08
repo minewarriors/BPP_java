@@ -8,7 +8,11 @@ public class Product {
     private String color;
     private String size;
 
-    public Product(int productId, int x, int y, String color, String size) {
+    public Product(String color, String size) {
+        this(0, 0, 0,color,size);
+    }
+    
+        public Product(int productId, int x, int y, String color, String size) {
         this.productId = productId;
         this.x = x;
         this.y = y;
