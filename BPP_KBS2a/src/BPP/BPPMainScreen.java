@@ -1,5 +1,6 @@
 package BPP;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
@@ -32,19 +34,24 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
         setTitle("BPP");
         setSize(1000, 800);
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel panel1 = new JPanel();
+
         jlXML = new JLabel("Upload XML file:");
-        add(jlXML);
+        panel1.add(jlXML);
         jbUploadXML = new JButton("Choose file");
         jbUploadXML.addActionListener(this);
-        add(jbUploadXML);
+        panel1.add(jbUploadXML);
+
+        JPanel panel2 = new JPanel();
+        //https://www.youtube.com/watch?v=mgnWYBaJuUk
 
         jlNumberTimes = new JLabel("Number of times:");
-        add(jlNumberTimes);
+        panel2.add(jlNumberTimes);
         jtfNumber = new JTextField(2);
-        add(jtfNumber);
+        panel2.add(jtfNumber);
 
         jbStart = new JButton("Start");
         jbStart.addActionListener(this);
