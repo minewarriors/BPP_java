@@ -1,7 +1,5 @@
 package BPP;
 
-import static java.awt.PageAttributes.MediaType.A1;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -13,11 +11,14 @@ public class Main {
           
            BPPMainScreen headscreen = new BPPMainScreen(A1);
            
-           RandomProductArray b2 = new RandomProductArray();
+           RandomOrder b2 = new RandomOrder();
            b2.print();
            System.out.println(b2.getSize());
            System.out.println(b2.getProductSize(1));
            System.out.println(b2.getProductColor(1));
+           System.out.println(b2.getProductId(1));
+           System.out.println(b2.getProductX(1));
+           System.out.println(b2.getProductY(1));
     }
 
 }
