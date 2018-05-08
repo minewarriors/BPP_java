@@ -1,11 +1,8 @@
 package BBP;
 
-/**
- *
- * @author Christiaan
- */
 public class Product {
 
+<<<<<<< HEAD
     private int productId;
     private int x;
     private int y;
@@ -46,4 +43,6 @@ public class Product {
     }
     
     
+=======
+>>>>>>> 802c75f5957f8fc2893ee121e69e05409b2fc5b9
 }
