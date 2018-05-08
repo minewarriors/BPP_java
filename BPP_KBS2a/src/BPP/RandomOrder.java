@@ -9,22 +9,38 @@ public class RandomOrder {
 
     public RandomOrder() {
         Random random = new Random();
-        for (int i = 1; i <= (random.nextInt(5)+ 2); i++) {
-            productArray.add(new Product((i + 1), (random.nextInt(5) + 1), (random.nextInt(5) + 1), String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1)*10));
+        int n = (random.nextInt(4) + 1);
+        productArray.add(new Product(1, (random.nextInt(5) + 1), (random.nextInt(5) + 1), String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1) * 10));  //maak een nieuw product object aan
+        for (int i = 0; i < n; i++) { //voeg tussen de 2 en 5 producten toe aan de array
+            int newX = (random.nextInt(5) + 1);
+            int newY = (random.nextInt(5) + 1);
+            boolean check = true;
+
+            for (Product x : productArray) {
+                if (x.getX() == newX && x.getY() == newY) {
+                    check = false;
+                }
+            }
+
+            if (check) {
+                productArray.add(new Product((i + 1), newX, newY, String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1) * 10));  //maak een nieuw product object aan
+            } else {
+                i--;
+            }
         }
     }
 
-    public void print() {
+    public void print() { //print de gegevens in de array 
         for (Product x : productArray) {
-            System.out.println("id:" + x.getProductId() + " X:" + x.getX() +  " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
+            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
         }
     }
 
-    public int getSize() {
+    public int getSize() { //krijg de lengthe van de array
         return productArray.size();
     }
 
-    public int getProductSize(int number) {
+    public int getProductSize(int number) { //krijg de fysieke lengthe van de array
         return productArray.get(number - 1).getSize();
     }
 
