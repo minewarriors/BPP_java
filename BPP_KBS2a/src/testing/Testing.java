@@ -14,5 +14,7 @@ public class Testing {
     public static void main(String[] args) {
         //bart voeg hieronder wat toe en commit dit.
         System.out.println("Joo het werkt, Jelle!");
+        
+        System.out.println("JOOOO heee mijn planga is echt super snel!!!, Christiaan!");
     }
 }
