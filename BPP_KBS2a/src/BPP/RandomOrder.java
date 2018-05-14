@@ -3,7 +3,7 @@ package BPP;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RandomOrder {
+public class RandomOrder implements OrderInterface{
 
     private ArrayList<Product> productArray = new ArrayList<>();
 
@@ -30,32 +30,39 @@ public class RandomOrder {
         }
     }
 
-    public void print() { //print de gegevens in de array 
-        for (Product x : productArray) {
+    @Override
+    public void print() { //print de gegevens in de array
+        productArray.forEach((x) -> {
             System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
-        }
+        });
     }
 
-    public int getSize() { //krijg de lengthe van de array
+    @Override
+    public int getOrderSize() { //krijg de lengthe van de array
         return productArray.size();
     }
 
+    @Override
     public int getProductSize(int number) { //krijg de fysieke lengthe van de array
         return productArray.get(number - 1).getSize();
     }
 
+    @Override
     public String getProductColor(int number) {
         return productArray.get(number - 1).getColor();
     }
 
+    @Override
     public int getProductId(int number) {
         return productArray.get(number - 1).getProductId();
     }
 
+    @Override
     public int getProductX(int number) {
         return productArray.get(number - 1).getX();
     }
 
+    @Override
     public int getProductY(int number) {
         return productArray.get(number - 1).getY();
     }
