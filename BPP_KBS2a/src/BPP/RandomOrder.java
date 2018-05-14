@@ -23,7 +23,7 @@ public class RandomOrder implements OrderInterface{
             }
 
             if (check) {
-                productArray.add(new Product((i + 1), newX, newY, String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1) * 10));  //maak een nieuw product object aan
+                productArray.add(new Product((i + 2), newX, newY, String.format("#%06x", random.nextInt(256 * 256 * 256)), (random.nextInt(4) + 1) * 10));  //maak een nieuw product object aan
             } else {
                 i--;
             }

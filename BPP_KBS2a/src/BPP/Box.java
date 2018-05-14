@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BPP;
 
 import java.util.ArrayList;
@@ -17,11 +12,18 @@ public class Box {
     
     private ArrayList<Product> productBoxArray = new ArrayList<>();
 
-    public Box() {
+    public Box(int size) {
+        this.size = size;
     }
 
-    public void AddProduct(Product product) {
+    public boolean AddProduct(Product product) {
+        if(product.getSize() < size){
+        this.size = size - product.getSize();   
         productBoxArray.add(product);
+        return true;
+        }else{
+            return true;
+        }
     }
     
 }

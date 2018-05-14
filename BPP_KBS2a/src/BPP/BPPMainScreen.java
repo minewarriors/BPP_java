@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
 
-    private Product product;
 
     private String[] Algorithms = {"Best-fit Decreasing", "Bin Completion", "First Fit", "Own Method"};
 
@@ -29,8 +28,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private JButton jbAddProduct;
     private JButton jbAddRandom;
 
-    public BPPMainScreen(Product product) {
-        this.product = product;
+    public BPPMainScreen() {
 
         setTitle("BPP");
         setSize(1000, 800);
