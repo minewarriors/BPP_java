@@ -1,7 +1,7 @@
 package BPP;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.Box;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
-
 
     private String[] Algorithms = {"Best-fit Decreasing", "Bin Completion", "First Fit", "Own Method"};
 
@@ -32,51 +31,84 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
         setTitle("BPP");
         setSize(1000, 800);
-        setLayout(new BorderLayout());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel ThePanel = new JPanel();
+        ThePanel.setLayout(new BorderLayout());
+
         JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        Box left1 = Box.createHorizontalBox();
+        Box left2 = Box.createHorizontalBox();
+        Box left3 = Box.createHorizontalBox();
+        Box right1 = Box.createHorizontalBox();
+        Box right2 = Box.createHorizontalBox();
+        Box right3 = Box.createHorizontalBox();
 
         jlXML = new JLabel("Upload XML file:");
-        panel1.add(jlXML);
+        left1.add(jlXML);
+        left1.add(Box.createHorizontalStrut(30));
         jbUploadXML = new JButton("Choose file");
         jbUploadXML.addActionListener(this);
-        panel1.add(jbUploadXML);
-
-        JPanel panel2 = new JPanel();
-        //https://www.youtube.com/watch?v=mgnWYBaJuUk
+        left1.add(jbUploadXML);
 
         jlNumberTimes = new JLabel("Number of times:");
-        panel2.add(jlNumberTimes);
-        jtfNumber = new JTextField(2);
-        panel2.add(jtfNumber);
+        right1.add(jlNumberTimes);
+        right1.add(Box.createHorizontalStrut(30));
+        jtfNumber = new JTextField(5);
+        right1.add(jtfNumber);
 
         jbStart = new JButton("Start");
         jbStart.addActionListener(this);
-        add(jbStart);
+        right2.add(jbStart);
 
+        left2.add(Box.createHorizontalStrut(30));
         jlAlgorithm = new JLabel("BPP Algorithm:");
-        add(jlAlgorithm);
+        left2.add(jlAlgorithm);
+        left2.add(Box.createHorizontalStrut(30));
         JComboBox AlgorithmList = new JComboBox(Algorithms);
         AlgorithmList.setSelectedIndex(3);
         AlgorithmList.addActionListener(this);
-        add(AlgorithmList);
+        left2.add(AlgorithmList);
 
         jbStop = new JButton("Stop");
         jbStop.addActionListener(this);
-        add(jbStop);
+        right3.add(jbStop);
 
+        left3.add(Box.createHorizontalStrut(30));
         jlAddProduct = new JLabel("Add product:");
-        add(jlAddProduct);
-        jtfSize = new JTextField(1);
-        add(jtfSize);
+        left3.add(jlAddProduct);
+        left3.add(Box.createHorizontalStrut(30));
+        jtfSize = new JTextField(5);
+        left3.add(jtfSize);
+        left3.add(Box.createHorizontalStrut(30));
         jbAddProduct = new JButton("Add");
         jbAddProduct.addActionListener(this);
-        add(jbAddProduct);
+        left3.add(jbAddProduct);
+        left3.add(Box.createHorizontalStrut(30));
         jbAddRandom = new JButton("Add random");
         jbAddRandom.addActionListener(this);
-        add(jbAddRandom);
+        left3.add(jbAddRandom);
 
+        Box leftComplete = Box.createVerticalBox();
+        leftComplete.add(left1);
+        leftComplete.add(Box.createVerticalStrut(30));
+        leftComplete.add(left2);
+        leftComplete.add(Box.createVerticalStrut(30));
+        leftComplete.add(left3);
+        panel1.add(leftComplete);
+
+        Box rightComplete = Box.createVerticalBox();
+        rightComplete.add(right1);
+        rightComplete.add(Box.createVerticalStrut(30));
+        rightComplete.add(right2);
+        rightComplete.add(Box.createVerticalStrut(30));
+        rightComplete.add(right3);
+        panel2.add(rightComplete);
+
+        ThePanel.add(panel1, BorderLayout.WEST);
+        ThePanel.add(panel2, BorderLayout.EAST);
+        add(ThePanel);
         setVisible(true);
     }
 
