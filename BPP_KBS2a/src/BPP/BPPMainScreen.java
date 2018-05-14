@@ -4,12 +4,20 @@ import java.awt.BorderLayout;
 import javax.swing.Box;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.Document;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
 
@@ -27,11 +35,18 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private JButton jbAddProduct;
     private JButton jbAddRandom;
 
+    private final JFileChooser fc;
+
     public BPPMainScreen() {
 
         setTitle("BPP");
         setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        fc = new JFileChooser();
+
+        DrawPanel dp = new DrawPanel();
+        add(dp);
 
         JPanel ThePanel = new JPanel();
         ThePanel.setLayout(new BorderLayout());
@@ -113,7 +128,50 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jbUploadXML) {
+            try {
+                File xmlFile;
+                int returnVal = fc.showOpenDialog(BPPMainScreen.this);
 
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    xmlFile = new File(file.getAbsolutePath());
+
+                    // loading XML file
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    org.w3c.dom.Document doc = dBuilder.parse(xmlFile);
+
+                    // List elements with "package" tag || Remember a Node is an element
+                    NodeList nList = doc.getElementsByTagName("package");
+
+                    System.out.println("----------------------------");
+
+                    // go through NodeList
+                    for (int temp = 0; temp < nList.getLength(); temp++) {
+
+                        Node nNode = nList.item(temp);
+
+                        System.out.println("\nCurrent Element :" + nNode.getNodeName());
+                        // if NodeType is the same as ElementNode
+                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                            Element eElement = (Element) nNode;
+
+                            System.out.println("package id : " + eElement.getAttribute("id"));
+                            System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
+                            System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
+                            System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+
+                        }
+                    }
+                } else {
+                    System.out.println("Open command cancelled by user." + "\n");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        repaint();
     }
-
 }
