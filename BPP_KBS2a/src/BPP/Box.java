@@ -10,13 +10,10 @@ public class Box {
 
     private int freeSpace;
 
-    private String name;
-
     private ArrayList<Product> productBoxArray = new ArrayList<>();
 
-    public Box(String name, int size) {
+    public Box(int size) {
         this.freeSpace = size;
-        this.name = name;
     }
 
     public boolean AddProduct(Product product) {
@@ -33,10 +30,6 @@ public class Box {
         return freeSpace;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public ArrayList<Product> getProductBoxArray() {
         return productBoxArray;
     }
@@ -46,5 +39,14 @@ public class Box {
             System.out.println(x);
         });
     }
+
+    public void setFreeSpace(int freeSpace) {
+        this.freeSpace = freeSpace;
+    }
+
+    public void setProductBoxArray(ArrayList<Product> productBoxArray) {
+        this.productBoxArray = productBoxArray;
+    }
+    
 
 }

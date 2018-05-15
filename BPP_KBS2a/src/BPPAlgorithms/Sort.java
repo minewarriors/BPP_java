@@ -7,7 +7,7 @@ package BPPAlgorithms;
 import BPP.Product;
 import java.util.*;
 
-class Sort {
+public class Sort {
 
     // Function to sort by column
     public static void sortbyColumn(int arr[][], int col, boolean desc) {
