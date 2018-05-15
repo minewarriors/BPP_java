@@ -10,34 +10,74 @@ import java.util.ArrayList;
 public class FirstFit implements BPPAlgorithmInterface {
 
     private OrderInterface order;
-    private ArrayList<Box> BoxArray = new ArrayList<>();
-    ArrayList<Product> productArray = new ArrayList<>();
+    private ArrayList<Product> productArray = new ArrayList<>();
 
     public FirstFit(OrderInterface order) {
         this.order = order;
         productArray = order.getProductArray();
-        Box A = new Box(boxSize);
-        Box B = new Box(boxSize);
-        Box C = new Box(boxSize);
     }
 
     @Override
-    public void calculate() {
- 
-        sortProductsInOrderBySize(productArray, true);
-        
-            sortProductsInOrderBySize(productArray, true).forEach((x) -> {
-            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
-             });
-            
-                        sortProductsInOrderBySize(productArray, false).forEach((x) -> {
-            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
-             });
-        
-    }
+    public ArrayList<Box> calculate() {
 
-    @Override
-    public void printSolution() {
-        System.out.print("test");
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(productArray, true);
+        ArrayList<Product> arrayA = new ArrayList<>();
+        ArrayList<Product> arrayB = new ArrayList<>();
+        ArrayList<Product> leftOverArray = new ArrayList<>();
+        ArrayList<Box> boxArray = new ArrayList<>();
+
+
+        Box A = new Box("A", boxSize);
+        Box B = new Box("B", boxSize);
+        Box C = new Box("C", boxSize);
+
+        System.out.print("fill box A - ");
+        sortedArray.forEach((x) -> {
+            if (A.AddProduct(x)) {
+                System.out.print("add ");
+            } else {
+                arrayA.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box B - ");
+        arrayA.forEach((x) -> {
+            if (B.AddProduct(x)) {
+                System.out.print("add ");
+            } else {
+                arrayB.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+        System.out.print("fill box C - ");
+        arrayB.forEach((x) -> {
+            if (C.AddProduct(x)) {
+                System.out.print("add ");
+            } else {
+                leftOverArray.add(x);
+                System.out.print("denied ");
+            }
+        });
+        System.out.println();
+
+        if (leftOverArray.size() <= 0) {
+            if (A.getProductBoxArray().size() > 0) {
+                boxArray.add(A);
+            }
+            if (B.getProductBoxArray().size() > 0) {
+                boxArray.add(B);
+            }
+            if (C.getProductBoxArray().size() > 0) {
+                boxArray.add(C);
+            }
+        }
+
+        leftOverArray.forEach((x) -> {
+            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
+        });
+        return boxArray;
+
     }
 }

@@ -1,6 +1,8 @@
 package BPPAlgorithms;
 
+import BPP.Box;
 import BPP.OrderInterface;
+import java.util.ArrayList;
 
 public class BestFitDecreasing implements BPPAlgorithmInterface{
 
@@ -9,9 +11,10 @@ public class BestFitDecreasing implements BPPAlgorithmInterface{
     public BestFitDecreasing(OrderInterface order) {
        this.order = order; 
     }
-    
+
     @Override
-    public void printSolution(){
-        System.out.print("test");
+    public ArrayList<Box> calculate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

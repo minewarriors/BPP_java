@@ -1,6 +1,8 @@
 package BPPAlgorithms;
 
+import BPP.Box;
 import BPP.OrderInterface;
+import java.util.ArrayList;
 
 public class OwnMethod implements BPPAlgorithmInterface {
 
@@ -11,7 +13,8 @@ public class OwnMethod implements BPPAlgorithmInterface {
     }
 
     @Override
-    public void printSolution() {
-        System.out.print("test");
+    public ArrayList<Box> calculate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

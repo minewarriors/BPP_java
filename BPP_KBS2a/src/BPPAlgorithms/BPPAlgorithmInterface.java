@@ -1,12 +1,14 @@
 package BPPAlgorithms;
 
+import BPP.Box;
+import java.util.ArrayList;
+
 /**
  *
  * @author Christiaan
  */
 public interface BPPAlgorithmInterface {
-    void printSolution();
-    void calculate();
+    ArrayList<Box> calculate();
     final public int boxSize = 60;
 }
   

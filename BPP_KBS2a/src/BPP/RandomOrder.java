@@ -34,44 +34,8 @@ public class RandomOrder implements OrderInterface{
     @Override
     public void print() { //print de gegevens in de array
         productArray.forEach((x) -> {
-            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
+            System.out.println(x);
         });
-    }
-
-    @Override
-    public int getOrderSize() { //krijg de lengthe van de array
-        return productArray.size();
-    }
-
-    @Override
-    public int getProductSize(int number) { //krijg de fysieke lengthe van het object 
-        return productArray.get(number - 1).getSize();
-    }
-    
-    @Override
-    public Product getProduct(int number) {
-        return productArray.get(number - 1);
-    }
-    
-
-    @Override
-    public Color getProductColor(int number) {
-        return productArray.get(number - 1).getColor();
-    }
-
-    @Override
-    public int getProductId(int number) {
-        return productArray.get(number - 1).getProductId();
-    }
-
-    @Override
-    public int getProductX(int number) {
-        return productArray.get(number - 1).getX();
-    }
-
-    @Override
-    public int getProductY(int number) {
-        return productArray.get(number - 1).getY();
     }
 
     @Override
