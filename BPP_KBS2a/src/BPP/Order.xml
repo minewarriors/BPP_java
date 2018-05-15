@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<order>
+    <package id="1">
+        <size>40</size>
+        <color>Red</color>
+        <x>10</x>
+        <y>30</y>
+    </package>
+    <package id="2">
+        <size>30</size>
+        <color>Blue</color>
+        <x>20</x>
+        <y>10</y>
+    </package>
+    <package id="3">
+        <size>20</size>
+        <color>Green</color>
+        <x>40</x>
+        <y>30</y>
+    </package>
+    <package id="4">
+        <size>40</size>
+        <color>Pink</color>
+        <x>30</x>
+        <y>20</y>
+    </package>
+    
+</order>

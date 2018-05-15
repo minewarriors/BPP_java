@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
@@ -140,7 +140,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                     // loading XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                    org.w3c.dom.Document doc = dBuilder.parse(xmlFile);
+                    Document doc = dBuilder.parse(xmlFile);
 
                     // List elements with "package" tag || Remember a Node is an element
                     NodeList nList = doc.getElementsByTagName("package");
@@ -160,8 +160,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
                             System.out.println("package id : " + eElement.getAttribute("id"));
                             System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
-                            System.out.println("Colour : " + eElement.getElementsByTagName("colour").item(0).getTextContent());
-                            System.out.println("Number : " + eElement.getElementsByTagName("number").item(0).getTextContent());
+                            System.out.println("Color : " + eElement.getElementsByTagName("color").item(0).getTextContent());
+                            System.out.println("X Coördinate : " + eElement.getElementsByTagName("x").item(0).getTextContent());
+                            System.out.println("Y Coördinate : " + eElement.getElementsByTagName("y").item(0).getTextContent());
 
                         }
                     }
