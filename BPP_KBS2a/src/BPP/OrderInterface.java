@@ -1,6 +1,7 @@
 
 package BPP;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ public interface OrderInterface {
     
     Product getProduct(int number);
 
-    String getProductColor(int number);
+    Color getProductColor(int number);
 
     int getProductId(int number);
 
