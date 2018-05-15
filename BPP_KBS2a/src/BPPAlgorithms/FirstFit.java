@@ -3,6 +3,7 @@ package BPPAlgorithms;
 import BPP.Box;
 import BPP.OrderInterface;
 import BPP.Product;
+import java.awt.Color;
 import static BPPAlgorithms.Sort.sortProductsInOrderBySize;
 import java.util.ArrayList;
 
