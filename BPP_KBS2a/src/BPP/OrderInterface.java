@@ -1,6 +1,8 @@
 
 package BPP;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Christiaan
@@ -10,6 +12,8 @@ public interface OrderInterface {
     int getOrderSize();
 
     int getProductSize(int number);
+    
+    Product getProduct(int number);
 
     String getProductColor(int number);
 
@@ -20,5 +24,7 @@ public interface OrderInterface {
     int getProductY(int number);
     
     void print();
+    
+    ArrayList<Product> getProductArray();
    
 }
