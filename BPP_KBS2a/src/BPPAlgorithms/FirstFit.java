@@ -29,6 +29,10 @@ public class FirstFit implements BPPAlgorithmInterface {
             sortProductsInOrderBySize(productArray, true).forEach((x) -> {
             System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
              });
+            
+                        sortProductsInOrderBySize(productArray, false).forEach((x) -> {
+            System.out.println("id:" + x.getProductId() + " X:" + x.getX() + " Y:" + x.getY() + " C:" + x.getColor() + " S:" + x.getSize());
+             });
         
     }
 

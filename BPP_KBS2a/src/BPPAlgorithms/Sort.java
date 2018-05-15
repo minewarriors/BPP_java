@@ -10,7 +10,7 @@ import java.util.*;
 class Sort {
 
     // Function to sort by column
-    public static void sortbyColumn(int arr[][], int col) {
+    public static void sortbyColumn(int arr[][], int col, boolean desc) {
         // Using built-in sort function Arrays.sort
         Arrays.sort(arr, new Comparator<int[]>() {
 
@@ -21,10 +21,18 @@ class Sort {
 
                 // To sort in descending order revert 
                 // the '>' Operator
-                if (entry1[col] < entry2[col]) {
-                    return 1;
+                if (desc) {
+                    if (entry1[col] < entry2[col]) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
                 } else {
-                    return -1;
+                    if (entry1[col] > entry2[col]) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
                 }
             }
         });  // End of function call sort().
@@ -42,12 +50,12 @@ class Sort {
             product2dArray[n][1] = productArray.get(n).getSize();
         }
 
-        sortbyColumn(product2dArray, 1);
+        sortbyColumn(product2dArray, 1, desc);
 
         for (int i = 0; i < product2dArray.length; i++) {
             for (int j = 0; j < product2dArray[i].length; j++) {
             }
-            newArray.add(productArray.get(product2dArray[i][0]-1));
+            newArray.add(productArray.get(product2dArray[i][0] - 1));
         }
         return newArray;
     }
