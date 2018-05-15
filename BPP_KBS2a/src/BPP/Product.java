@@ -1,18 +1,24 @@
 package BPP;
 
+import java.awt.Color;
+
+/**
+ *
+ * @author jelle
+ */
 public class Product {
 
     private int productId;
     private int x;
     private int y;
-    private String color;
+    private Color color;
     private int size;
 
-    public Product(String color, int size) {
+    public Product(Color color, int size) {
         this(0, 0, 0, color, size);
     }
 
-    public Product(int productId, int x, int y, String color, int size) {
+    public Product(int productId, int x, int y, Color color, int size) {
         this.productId = productId;
         this.x = x;
         this.y = y;
@@ -32,7 +38,7 @@ public class Product {
         return y;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
