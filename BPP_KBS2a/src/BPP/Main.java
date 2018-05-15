@@ -20,6 +20,8 @@ public class Main {
         } else {
             System.out.println("---- Te weinig ruimte ----");
         }
+        
+        A.clearBox();
 
         System.out.println("box A");
         

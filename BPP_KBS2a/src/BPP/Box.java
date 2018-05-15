@@ -9,11 +9,14 @@ import java.util.ArrayList;
 public class Box {
 
     private int freeSpace;
+    
+    private int boxSize;
 
     private ArrayList<Product> productBoxArray = new ArrayList<>();
 
-    public Box(int size) {
-        this.freeSpace = size;
+    public Box(int boxSize) {
+        this.boxSize = boxSize;
+        this.freeSpace = this.boxSize;
     }
 
     public boolean AddProduct(Product product) {
@@ -40,13 +43,11 @@ public class Box {
         });
     }
 
-    public void setFreeSpace(int freeSpace) {
-        this.freeSpace = freeSpace;
+    public void clearBox() {
+        this.productBoxArray.clear();
+        this.freeSpace = this.boxSize;
     }
-
-    public void setProductBoxArray(ArrayList<Product> productBoxArray) {
-        this.productBoxArray = productBoxArray;
-    }
+    
     
 
 }
