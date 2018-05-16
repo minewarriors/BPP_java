@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // BPPMainScreen headscreen = new BPPMainScreen();
+        BPPMainScreen headscreen = new BPPMainScreen();
         RandomOrder b2 = new RandomOrder();
         b2.print();
 
@@ -21,7 +21,7 @@ public class Main {
             System.out.println("---- Te weinig ruimte ----");
         }
         
-        A.clearBox();
+        //A.clearBox();
 
         System.out.println("box A");
         
