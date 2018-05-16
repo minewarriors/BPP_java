@@ -1,6 +1,7 @@
 package BPP;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import javax.swing.Box;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Element;
@@ -38,18 +40,21 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private final JFileChooser fc;
 
     public BPPMainScreen() {
+        System.out.println("122");
 
         setTitle("BPP");
-        setSize(1000, 800);
+        setSize(1000, 720);
+        setLayout(new BorderLayout());
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("XML Files", "xml");
         fc = new JFileChooser();
+        fc.setFileFilter(xmlFilter);
+        fc.setAcceptAllFileFilterUsed(false);
 
         DrawPanel dp = new DrawPanel();
-        add(dp);
-
-        JPanel ThePanel = new JPanel();
-        ThePanel.setLayout(new BorderLayout());
+        add(dp, BorderLayout.NORTH);
 
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
@@ -121,9 +126,8 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         rightComplete.add(right3);
         panel2.add(rightComplete);
 
-        ThePanel.add(panel1, BorderLayout.WEST);
-        ThePanel.add(panel2, BorderLayout.EAST);
-        add(ThePanel);
+        add(panel1, BorderLayout.WEST);
+        add(panel2, BorderLayout.EAST);
         setVisible(true);
     }
 
