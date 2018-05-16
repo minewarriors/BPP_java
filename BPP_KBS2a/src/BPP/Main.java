@@ -1,6 +1,7 @@
 package BPP;
 
 import static BPP.BPPInterface.boxSize;
+import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
 
 public class Main {
@@ -20,25 +21,30 @@ public class Main {
         } else {
             System.out.println("---- Te weinig ruimte ----");
         }
-        
-        //A.clearBox();
 
+        //A.clearBox();
         System.out.println("box A");
-        
+
         A.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
 
         System.out.println("box B");
-        
+
         B.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
 
         System.out.println("box C");
-        
+
         C.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
+
+        System.out.println("BestFitDecreasing");
+        
+        if (BestFitDecreasing(b2, A, B, C)) {
+            System.out.println("---- Succes ----");
+        }
     }
 }

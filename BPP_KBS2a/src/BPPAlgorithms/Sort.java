@@ -4,6 +4,7 @@ package BPPAlgorithms;
  *
  * @author Christiaan
  */
+import BPP.Box;
 import BPP.Product;
 import java.util.*;
 
@@ -46,7 +47,7 @@ public class Sort {
         int[][] product2dArray = new int[OrderSize][2];
 
         for (int n = 0; n < OrderSize; n++) {
-            product2dArray[n][0] = productArray.get(n).getProductId();
+            product2dArray[n][0] = n + 1;
             product2dArray[n][1] = productArray.get(n).getSize();
         }
 
@@ -58,5 +59,28 @@ public class Sort {
             newArray.add(productArray.get(product2dArray[i][0] - 1));
         }
         return newArray;
+    }
+    
+        public static ArrayList<Box> sortBoxesInOrderByFreeSpace(ArrayList<Box> boxArray, boolean desc) {
+        int boxArraySize = boxArray.size();
+
+        ArrayList<Box> newBoxArray = new ArrayList<>();
+
+        int[][] box2dArray = new int[boxArraySize][2];
+        
+
+        for (int n = 0; n < boxArraySize; n++) {
+            box2dArray[n][0] = n + 1;
+            box2dArray[n][1] = boxArray.get(n).getFreeSpace();
+        }
+
+        sortbyColumn(box2dArray, 1, desc);
+
+        for (int i = 0; i < box2dArray.length; i++) {
+            for (int j = 0; j < box2dArray[i].length; j++) {
+            }
+            newBoxArray.add(boxArray.get(box2dArray[i][0] - 1));
+        }
+        return newBoxArray;
     }
 }

@@ -3,6 +3,7 @@ package BPPAlgorithms;
 import BPP.Box;
 import BPP.OrderInterface;
 import BPP.Product;
+import static BPPAlgorithms.Sort.sortBoxesInOrderByFreeSpace;
 import static BPPAlgorithms.Sort.sortProductsInOrderBySize;
 import java.util.ArrayList;
 
@@ -14,7 +15,6 @@ public class Algorithms {
         ArrayList<Product> arrayA = new ArrayList<>();
         ArrayList<Product> arrayB = new ArrayList<>();
         ArrayList<Product> leftOverArray = new ArrayList<>();
-        ArrayList<Box> boxArray = new ArrayList<>();
 
         System.out.print("fill box A - ");
         sortedArray.forEach((x) -> {
@@ -46,7 +46,7 @@ public class Algorithms {
             }
         });
         System.out.println();
-        
+
         leftOverArray.forEach((x) -> {
             System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
         });
@@ -54,6 +54,25 @@ public class Algorithms {
     }
 
     public static boolean BestFitDecreasing(OrderInterface order, Box A, Box B, Box C) {
+        
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getProductArray(), true);
+        ArrayList<Box> boxArray = new ArrayList<>();
+        boxArray.add(A);
+        boxArray.add(B);
+        boxArray.add(C);
+        ArrayList<Box> sortedBoxArray = sortBoxesInOrderByFreeSpace(boxArray, true);
+        
+        boxArray.forEach((a) -> {
+           System.out.println(a.getFreeSpace());
+        });
+        
+        System.out.println("--");
+
+
+        sortedBoxArray.forEach((a) -> {
+             System.out.println(a.getFreeSpace());
+        });
+
         return false;
     }
 
