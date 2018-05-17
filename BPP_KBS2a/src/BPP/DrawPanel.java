@@ -23,6 +23,7 @@ public class DrawPanel extends JPanel {
         repaint();
     }
 
+    //volgende methodes zorgen ervoor dat pakketten in een rij worden getekent op volgorde van id
     public void drawBigProduct(Graphics g, int id) {
         if (id > 0) {
             int x = 0;
@@ -94,6 +95,7 @@ public class DrawPanel extends JPanel {
         if (order != null) {
             ArrayList<Product> orderList = order.getOrderPackages();
 
+            //kijken welke methode aangeroepen moet worden op grootte
             for (Product p : orderList) {
                 int id = p.getProductId();
 
@@ -131,12 +133,6 @@ public class DrawPanel extends JPanel {
 
         g.setColor(Color.red);
 
-        //pakketten in rij
-//        g.fillRect(12, 30, 200, 200);
-//        g.fillRect(224, 30, 200, 150);
-//        g.fillRect(436, 30, 200, 100);
-//        g.fillRect(648, 30, 200, 200);
-//        g.fillRect(860, 30, 200, 100);
         //groot pakket
         g.fillRect(140, 350, 200, 200);
 

@@ -26,8 +26,6 @@ import org.w3c.dom.NodeList;
 
 public class BPPMainScreen extends JFrame implements ActionListener {
 
-    private String[] Algorithms = {"Best-fit Decreasing", "Bin Completion", "First Fit", "Own Method"};
-
     private JLabel jlXML;
     private JButton jbUploadXML;
     private JLabel jlNumberTimes;
@@ -42,6 +40,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private DrawPanel dp;
 
     private final JFileChooser fc;
+
+    JComboBox algorithmList = new JComboBox();
+    Order order = new Order();
 
     public BPPMainScreen() {
         System.out.println("111");
@@ -90,10 +91,12 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         jlAlgorithm = new JLabel("BPP Algorithm:");
         left2.add(jlAlgorithm);
         left2.add(Box.createHorizontalStrut(30));
-        JComboBox AlgorithmList = new JComboBox(Algorithms);
-        AlgorithmList.setSelectedIndex(3);
-        AlgorithmList.addActionListener(this);
-        left2.add(AlgorithmList);
+        algorithmList.addItem("First Fit");
+        algorithmList.addItem("Best-fit Decreasing");
+        algorithmList.addItem("Bin Completion");
+        algorithmList.addItem("Own Method");
+        algorithmList.addActionListener(this);
+        left2.add(algorithmList);
 
         jbStop = new JButton("Stop");
         jbStop.addActionListener(this);
@@ -136,6 +139,15 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jbStart) {
+            String algorithm = (String) algorithmList.getSelectedItem();
+
+            if (algorithm == "First Fit") {
+                if (this.order != null) {
+
+                }
+            }
+        }
         if (e.getSource() == jbUploadXML) {
             try {
                 File xmlFile;
@@ -144,7 +156,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
-                    Order order = new Order();
 
                     // loading XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
