@@ -1,6 +1,7 @@
 package BPP;
 
 import static BPP.BPPInterface.boxSize;
+import static BPPAlgorithms.Algorithms.BestFitDecreasing;
 import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -39,7 +40,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private JTextField jtfSize;
     private JButton jbAddProduct;
     private JButton jbAddRandom;
-    private DrawPanel dp;
 
     private final JFileChooser fc;
 
@@ -48,6 +48,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     BPP.Box A = new BPP.Box(boxSize);
     BPP.Box B = new BPP.Box(boxSize);
     BPP.Box C = new BPP.Box(boxSize);
+    DrawPanel dp = new DrawPanel(A, B, C);
 
     public BPPMainScreen() {
         System.out.println("111");
@@ -63,7 +64,6 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         fc.setFileFilter(xmlFilter);
         fc.setAcceptAllFileFilterUsed(false);
 
-        dp = new DrawPanel();
         add(dp, BorderLayout.NORTH);
 
         JPanel panel1 = new JPanel();
@@ -155,26 +155,35 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                         System.out.println("---- Te weinig ruimte ----");
                     }
                 }
-                this.order.print();
-                
-                System.out.println("box A");
-
-                A.getProductBoxArray().forEach((a) -> {
-                    System.out.println(a);
-                });
-
-                System.out.println("box B");
-
-                B.getProductBoxArray().forEach((a) -> {
-                    System.out.println(a);
-                });
-
-                System.out.println("box C");
-
-                C.getProductBoxArray().forEach((a) -> {
-                    System.out.println(a);
-                });
             }
+            if (algorithm == "Best-fit Decreasing") {
+                if (this.order != null) {
+                    if (BestFitDecreasing(this.order, A, B, C)) {
+                        System.out.println("---- Succes ----");
+                    } else {
+                        System.out.println("---- Te weinig ruimte ----");
+                    }
+                }
+            }
+            this.order.print();
+
+            System.out.println("box A");
+
+            A.getProductBoxArray().forEach((a) -> {
+                System.out.println(a);
+            });
+
+            System.out.println("box B");
+
+            B.getProductBoxArray().forEach((a) -> {
+                System.out.println(a);
+            });
+
+            System.out.println("box C");
+
+            C.getProductBoxArray().forEach((a) -> {
+                System.out.println(a);
+            });
         }
         if (e.getSource() == jbUploadXML) {
             try {
