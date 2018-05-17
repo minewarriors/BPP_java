@@ -1,5 +1,7 @@
 package BPP;
 
+import static BPP.BPPInterface.boxSize;
+import static BPPAlgorithms.Algorithms.firstFit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import static java.awt.Color.*;
@@ -43,6 +45,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     JComboBox algorithmList = new JComboBox();
     Order order = new Order();
+    BPP.Box A = new BPP.Box(boxSize);
+    BPP.Box B = new BPP.Box(boxSize);
+    BPP.Box C = new BPP.Box(boxSize);
 
     public BPPMainScreen() {
         System.out.println("111");
@@ -144,8 +149,31 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
             if (algorithm == "First Fit") {
                 if (this.order != null) {
-
+                    if (firstFit(this.order, A, B, C)) {
+                        System.out.println("---- Succes ----");
+                    } else {
+                        System.out.println("---- Te weinig ruimte ----");
+                    }
                 }
+                this.order.print();
+                
+                System.out.println("box A");
+
+                A.getProductBoxArray().forEach((a) -> {
+                    System.out.println(a);
+                });
+
+                System.out.println("box B");
+
+                B.getProductBoxArray().forEach((a) -> {
+                    System.out.println(a);
+                });
+
+                System.out.println("box C");
+
+                C.getProductBoxArray().forEach((a) -> {
+                    System.out.println(a);
+                });
             }
         }
         if (e.getSource() == jbUploadXML) {

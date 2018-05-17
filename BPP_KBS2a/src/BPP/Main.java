@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         BPPMainScreen headscreen = new BPPMainScreen();
-        RandomOrder b2 = new RandomOrder();
+       /* RandomOrder b2 = new RandomOrder();
         RandomOrder b3 = new RandomOrder();
         b2.print();
 
@@ -47,6 +47,6 @@ public class Main {
         C.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
-
+*/
     }
 }
