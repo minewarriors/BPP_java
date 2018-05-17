@@ -39,8 +39,12 @@ public class RandomOrder implements OrderInterface{
     }
 
     @Override
-    public ArrayList<Product> getProductArray() {
+    public ArrayList<Product> getOrderPackages() {
         return productArray;
     }
 
+    @Override
+    public void addToOrder(Product p) {
+        productArray.add(p);
+    }
 }

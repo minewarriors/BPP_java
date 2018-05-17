@@ -12,7 +12,7 @@ public class Algorithms {
 
     public static boolean firstFit(OrderInterface order, Box A, Box B, Box C) {
 
-        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getProductArray(), true);
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
         ArrayList<Product> arrayA = new ArrayList<>();
         ArrayList<Product> arrayB = new ArrayList<>();
         ArrayList<Product> leftOverArray = new ArrayList<>();
@@ -63,7 +63,7 @@ public class Algorithms {
 
         ArrayList<Box> sortedBoxArray = sortBoxesInOrderByFreeSpace(boxArray, true);
 
-        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getProductArray(), true);
+        ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
         ArrayList<Product> arrayA = new ArrayList<>();
         ArrayList<Product> arrayB = new ArrayList<>();
         ArrayList<Product> leftOverArray = new ArrayList<>();

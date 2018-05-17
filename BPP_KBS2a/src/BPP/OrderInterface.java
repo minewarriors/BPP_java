@@ -12,6 +12,9 @@ public interface OrderInterface {
 
     void print();
     
-    ArrayList<Product> getProductArray();
-   
+    void addToOrder(Product p);
+    
+    ArrayList<Product> getOrderPackages();
+    
+    String toString();
 }
