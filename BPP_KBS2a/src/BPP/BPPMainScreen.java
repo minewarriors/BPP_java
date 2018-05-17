@@ -1,11 +1,14 @@
 package BPP;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import static java.awt.Color.*;
 import javax.swing.Box;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import static java.lang.Integer.parseInt;
+import java.lang.reflect.Field;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -36,14 +39,15 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     private JTextField jtfSize;
     private JButton jbAddProduct;
     private JButton jbAddRandom;
+    private DrawPanel dp;
 
     private final JFileChooser fc;
 
     public BPPMainScreen() {
-        System.out.println("122");
+        System.out.println("111");
 
         setTitle("BPP");
-        setSize(1000, 720);
+        setSize(1080, 800);
         setLayout(new BorderLayout());
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +57,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
         fc.setFileFilter(xmlFilter);
         fc.setAcceptAllFileFilterUsed(false);
 
-        DrawPanel dp = new DrawPanel();
+        dp = new DrawPanel();
         add(dp, BorderLayout.NORTH);
 
         JPanel panel1 = new JPanel();
@@ -140,6 +144,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     xmlFile = new File(file.getAbsolutePath());
+                    Order order = new Order();
 
                     // loading XML file
                     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -162,14 +167,27 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
                             Element eElement = (Element) nNode;
 
-                            System.out.println("package id : " + eElement.getAttribute("id"));
-                            System.out.println("Size : " + eElement.getElementsByTagName("size").item(0).getTextContent());
-                            System.out.println("Color : " + eElement.getElementsByTagName("color").item(0).getTextContent());
-                            System.out.println("X Coördinate : " + eElement.getElementsByTagName("x").item(0).getTextContent());
-                            System.out.println("Y Coördinate : " + eElement.getElementsByTagName("y").item(0).getTextContent());
+                            int id = parseInt(eElement.getAttribute("id"));
+                            int size = parseInt(eElement.getElementsByTagName("size").item(0).getTextContent());
+                            int x = parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
+                            int y = parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
 
+                            // Use reflection to access the static member of the Color class
+                            Color color;
+                            String tempColor = (eElement.getElementsByTagName("color").item(0).getTextContent()).toLowerCase();
+                            try {
+                                Field field = Class.forName("java.awt.Color").getField(tempColor);
+                                color = (Color) field.get(null);
+                            } catch (Exception ex) {
+                                color = BLACK;
+                            }
+
+                            Product p = new Product(id, x, y, color, size);
+                            order.addToOrder(p);
                         }
                     }
+                    dp.setOrder(order);
+                    order.toString();
                 } else {
                     System.out.println("Open command cancelled by user." + "\n");
                 }

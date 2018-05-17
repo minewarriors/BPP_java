@@ -2,10 +2,6 @@ package BPP;
 
 import java.awt.Color;
 
-/**
- *
- * @author jelle
- */
 public class Product {
 
     private int productId;
