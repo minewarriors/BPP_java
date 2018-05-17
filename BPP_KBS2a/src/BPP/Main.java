@@ -10,13 +10,20 @@ public class Main {
 
         BPPMainScreen headscreen = new BPPMainScreen();
         RandomOrder b2 = new RandomOrder();
+        RandomOrder b3 = new RandomOrder();
         b2.print();
 
         Box A = new Box(boxSize);
         Box B = new Box(boxSize);
         Box C = new Box(boxSize);
 
-        if (firstFit(b2, A, B, C)) {
+        if (BestFitDecreasing(b2, A, B, C)) {
+            System.out.println("---- Succes ----");
+        } else {
+            System.out.println("---- Te weinig ruimte ----");
+        }
+        b3.print();
+                if (BestFitDecreasing(b3, A, B, C)) {
             System.out.println("---- Succes ----");
         } else {
             System.out.println("---- Te weinig ruimte ----");
@@ -41,10 +48,5 @@ public class Main {
             System.out.println(a);
         });
 
-        System.out.println("BestFitDecreasing");
-        
-        if (BestFitDecreasing(b2, A, B, C)) {
-            System.out.println("---- Succes ----");
-        }
     }
 }

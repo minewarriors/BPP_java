@@ -83,4 +83,27 @@ public class Sort {
         }
         return newBoxArray;
     }
+        
+                public static Box getFullesBox(ArrayList<Box> boxArray) {
+        int boxArraySize = boxArray.size();
+
+        ArrayList<Box> newBoxArray = new ArrayList<>();
+
+        int[][] box2dArray = new int[boxArraySize][2];
+        
+
+        for (int n = 0; n < boxArraySize; n++) {
+            box2dArray[n][0] = n + 1;
+            box2dArray[n][1] = boxArray.get(n).getFreeSpace();
+        }
+
+        sortbyColumn(box2dArray, 1, true);
+
+        for (int i = 0; i < box2dArray.length; i++) {
+            for (int j = 0; j < box2dArray[i].length; j++) {
+            }
+            newBoxArray.add(boxArray.get(box2dArray[i][0] - 1));
+        }
+        return newBoxArray.get(0);
+    }
 }
