@@ -1,12 +1,13 @@
 package BPPAlgorithms;
 
+import static BPP.BPPInterface.boxSize;
 import BPP.Box;
 import BPP.OrderInterface;
 import BPP.Product;
-import static BPPAlgorithms.Sort.getFullesBox;
 import static BPPAlgorithms.Sort.sortBoxesInOrderByFreeSpace;
 import static BPPAlgorithms.Sort.sortProductsInOrderBySize;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Algorithms {
 
@@ -19,7 +20,7 @@ public abstract class Algorithms {
 
         System.out.print("fill box A - ");
         sortedArray.forEach((x) -> {
-            if (A.AddProduct(x)) {
+            if (A.AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 arrayA.add(x);
@@ -29,7 +30,7 @@ public abstract class Algorithms {
         System.out.println();
         System.out.print("fill box B - ");
         arrayA.forEach((x) -> {
-            if (B.AddProduct(x)) {
+            if (B.AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 arrayB.add(x);
@@ -39,7 +40,7 @@ public abstract class Algorithms {
         System.out.println();
         System.out.print("fill box C - ");
         arrayB.forEach((x) -> {
-            if (C.AddProduct(x)) {
+            if (C.AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 leftOverArray.add(x);
@@ -74,7 +75,7 @@ public abstract class Algorithms {
 
         System.out.print("fill box - ");
         sortedArray.forEach((x) -> {
-            if (sortedBoxArray.get(0).AddProduct(x)) {
+            if (sortedBoxArray.get(0).AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 arrayA.add(x);
@@ -84,7 +85,7 @@ public abstract class Algorithms {
         System.out.println();
         System.out.print("fill box - ");
         arrayA.forEach((x) -> {
-            if (sortedBoxArray.get(1).AddProduct(x)) {
+            if (sortedBoxArray.get(1).AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 arrayB.add(x);
@@ -94,7 +95,7 @@ public abstract class Algorithms {
         System.out.println();
         System.out.print("fill box - ");
         arrayB.forEach((x) -> {
-            if (sortedBoxArray.get(2).AddProduct(x)) {
+            if (sortedBoxArray.get(2).AddProduct(x, true)) {
                 System.out.print("add ");
             } else {
                 leftOverArray.add(x);
@@ -115,6 +116,90 @@ public abstract class Algorithms {
     }
 
     public static boolean OwnMethod(OrderInterface order, Box A, Box B, Box C) {
+
+        int sizeCounter = 0;
+        int lowerBound = 0;
+
+        sizeCounter = order.getOrderPackages().stream().map((a) -> a.getSize()).reduce(sizeCounter, Integer::sum);
+
+        if (sizeCounter % boxSize > 0) {
+            lowerBound = (sizeCounter / boxSize) + 1;
+        } else {
+            lowerBound = (sizeCounter / boxSize);
+        }
+
+        int box = 1;
+        int random;
+        int counter = 0;
+
+        System.out.println("lowerBound - " + lowerBound);
+
+        while (counter <= 50) {
+            if (lowerBound <= 0 || lowerBound > 3) {
+                return false;
+            }
+            System.out.println("New Round - ");
+            ArrayList<Product> orderArray = order.getOrderPackages();
+            int orderSize = orderArray.size();
+            while (box <= 3 && orderArray.size() > 0) {
+
+                if (box == 1) {
+                    System.out.println();
+                    System.out.print("fill box A - ");
+                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
+                    if (A.AddProduct(orderArray.get(random), false)) {
+                        System.out.print("add " + orderArray.get(random));
+                        orderArray.remove(random);
+                        orderSize--;
+                    } else {
+                        System.out.print("denied ");
+                        box++;
+                    }
+                }
+
+                if (box == 2) {
+                    System.out.println();
+                    System.out.print("fill box B - ");
+                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
+                    if (B.AddProduct(orderArray.get(random), false)) {
+                        System.out.print("add " + orderArray.get(random));
+                        orderArray.remove(random);
+                        orderSize--;
+                    } else {
+                        System.out.print("denied ");
+                        box++;
+                    }
+                }
+
+                if (box == 3) {
+                    System.out.println();
+                    System.out.print("fill box C - ");
+                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
+                    if (C.AddProduct(orderArray.get(random), false)) {
+                        System.out.print("add " + orderArray.get(random));
+                        orderArray.remove(random);
+                        orderSize--;
+                    } else {
+                        System.out.print("denied ");
+                        box++;
+                    }
+                }
+            }
+            System.out.println();
+            System.out.println(box);
+            if (box <= lowerBound) {
+                return true;
+            } else {
+                //lowerBound--;
+                counter++;
+                box = 1;
+            }
+        }
+        if (counter >= 50){
+            return false;
+        }
         return false;
+        
     }
+
 }

@@ -19,10 +19,12 @@ public class Box {
         this.freeSpace = this.boxSize;
     }
 
-    public boolean AddProduct(Product product) {
+    public boolean AddProduct(Product product, boolean add) {
         if (product.getSize() <= freeSpace) {
             this.freeSpace = freeSpace - product.getSize();
+            if(add){
             productBoxArray.add(product);
+            }
             return true;
         } else {
             return false;

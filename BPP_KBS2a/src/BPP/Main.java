@@ -2,6 +2,7 @@ package BPP;
 
 import static BPP.BPPInterface.boxSize;
 import static BPPAlgorithms.Algorithms.BestFitDecreasing;
+import static BPPAlgorithms.Algorithms.OwnMethod;
 import static BPPAlgorithms.Algorithms.firstFit;
 
 public class Main {
@@ -9,21 +10,14 @@ public class Main {
     public static void main(String[] args) {
 
         BPPMainScreen headscreen = new BPPMainScreen();
-       /* RandomOrder b2 = new RandomOrder();
-        RandomOrder b3 = new RandomOrder();
+        RandomOrder b2 = new RandomOrder();
         b2.print();
 
-        Box A = new Box(boxSize);
-        Box B = new Box(boxSize);
-        Box C = new Box(boxSize);
+        Box d = new Box(boxSize);
+        Box e = new Box(boxSize);
+        Box f = new Box(boxSize);
 
-        if (BestFitDecreasing(b2, A, B, C)) {
-            System.out.println("---- Succes ----");
-        } else {
-            System.out.println("---- Te weinig ruimte ----");
-        }
-        b3.print();
-                if (BestFitDecreasing(b3, A, B, C)) {
+        if (OwnMethod(b2, d, e, f)) {
             System.out.println("---- Succes ----");
         } else {
             System.out.println("---- Te weinig ruimte ----");
@@ -32,21 +26,21 @@ public class Main {
         //A.clearBox();
         System.out.println("box A");
 
-        A.getProductBoxArray().forEach((a) -> {
+        d.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
 
         System.out.println("box B");
 
-        B.getProductBoxArray().forEach((a) -> {
+        e.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
 
         System.out.println("box C");
 
-        C.getProductBoxArray().forEach((a) -> {
+        f.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
-*/
+
     }
 }
