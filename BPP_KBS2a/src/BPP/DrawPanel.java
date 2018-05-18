@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 public class DrawPanel extends JPanel {
 
     private Order order;
-    private Box boxA;
-    private Box boxB;
-    private Box boxC;
+    private Box a;
+    private Box b;
+    private Box c;
 
-    public DrawPanel(Box A,Box B,Box C) {
-        this.boxA = A;
-        this.boxB = B;
-        this.boxC = C;
+    public DrawPanel(Box boxA, Box boxB, Box boxC) {
+        this.a = boxA;
+        this.b = boxB;
+        this.c = boxC;
         this.order = null;
         this.setPreferredSize(new Dimension(1080, 600));
         setBackground(Color.WHITE);
@@ -140,7 +140,7 @@ public class DrawPanel extends JPanel {
         g.setColor(Color.red);
 
         //groot pakket
-         boxA.getProductBoxArray().forEach((a) -> {
+        a.getProductBoxArray().forEach((a) -> {
             System.out.println(a);
         });
         g.fillRect(140, 350, 200, 200);

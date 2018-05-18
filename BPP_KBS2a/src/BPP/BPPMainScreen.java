@@ -51,7 +51,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     DrawPanel dp = new DrawPanel(A, B, C);
 
     public BPPMainScreen() {
-        System.out.println("111");
+        System.out.println("121");
 
         setTitle("BPP");
         setSize(1080, 800);
@@ -145,9 +145,11 @@ public class BPPMainScreen extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbStart) {
+            //haalt informatie op uit de combo box
             String algorithm = (String) algorithmList.getSelectedItem();
 
-            if (algorithm == "First Fit") {
+            //het First Fit algoritme wordt opgehaald
+            if ("First Fit".equals(algorithm)) {
                 if (this.order != null) {
                     if (firstFit(this.order, A, B, C)) {
                         System.out.println("---- Succes ----");
@@ -156,7 +158,9 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                     }
                 }
             }
-            if (algorithm == "Best-fit Decreasing") {
+
+            //het First Fit algoritme wordt opgehaald
+            if ("Best-fit Decreasing".equals(algorithm)) {
                 if (this.order != null) {
                     if (BestFitDecreasing(this.order, A, B, C)) {
                         System.out.println("---- Succes ----");
@@ -202,14 +206,11 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                     // List elements with "package" tag || Remember a Node is an element
                     NodeList nList = doc.getElementsByTagName("package");
 
-                    System.out.println("----------------------------");
-
                     // go through NodeList
                     for (int temp = 0; temp < nList.getLength(); temp++) {
 
                         Node nNode = nList.item(temp);
 
-                        System.out.println("\nCurrent Element :" + nNode.getNodeName());
                         // if NodeType is the same as ElementNode
                         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 

@@ -8,7 +8,7 @@ import static BPPAlgorithms.Sort.sortBoxesInOrderByFreeSpace;
 import static BPPAlgorithms.Sort.sortProductsInOrderBySize;
 import java.util.ArrayList;
 
-public class Algorithms {
+public abstract class Algorithms {
 
     public static boolean firstFit(OrderInterface order, Box A, Box B, Box C) {
 
@@ -69,7 +69,7 @@ public class Algorithms {
         ArrayList<Product> leftOverArray = new ArrayList<>();
 
         sortedBoxArray.forEach((a) -> {
-             System.out.println(a.getFreeSpace());
+            System.out.println(a.getFreeSpace());
         });
 
         System.out.print("fill box - ");
