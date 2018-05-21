@@ -20,13 +20,13 @@
         <y>3</y>
     </package>
     <package id="4">
-        <size>40</size>
+        <size>30</size>
         <color>Pink</color>
         <x>5</x>
         <y>4</y>
     </package>
     <package id="5">
-        <size>30</size>
+        <size>40</size>
         <color>Yellow</color>
         <x>3</x>
         <y>1</y>

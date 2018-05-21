@@ -1,5 +1,6 @@
 package BPP;
 
+import static BPP.BPPInterface.boxSize;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -96,6 +97,69 @@ public class DrawPanel extends JPanel {
         }
     }
 
+    public void drawBoxBigProduct(Graphics g, int id) {
+        if (id > 0) {
+            int x = 0;
+            if (id == 1) {
+                x = 12;
+            }
+            if (id == 2) {
+                x = 224;
+            }
+            if (id == 3) {
+                x = 436;
+            }
+            if (id == 4) {
+                x = 648;
+            }
+            if (id == 5) {
+                x = 860;
+            }
+            g.fillRect(140, 350, 200, 200);
+        }
+    }
+
+    public void drawBoxMediumProduct(Graphics g, int id) {
+        if (id > 0) {
+            int x = 0;
+            if (id == 1) {
+                x = 12;
+            }
+            if (id == 2) {
+                x = 224;
+            }
+            if (id == 3) {
+                x = 436;
+            }
+            if (id == 4) {
+                x = 648;
+            }
+            if (id == 5) {
+                x = 860;
+            }
+            g.fillRect(440, 400, 200, 150);
+        }
+    }
+
+    public void drawBoxASmallProduct(Graphics g, int id) {
+        if (id > 0) {
+            int y = 0;
+            if (boxSize - a.getFreeSpace() == 60) {
+                y = 450;
+            }
+            if (boxSize - a.getFreeSpace() == 40) {
+                y = 350;
+            }
+            if (boxSize - a.getFreeSpace() == 30) {
+                y = 300;
+            }
+            if (boxSize - a.getFreeSpace() == 20) {
+                y = 250;
+            }
+            g.fillRect(140, y, 200, 100);
+        }
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (order != null) {
@@ -116,6 +180,25 @@ public class DrawPanel extends JPanel {
                     drawSmallProduct(g, id);
                 }
             }
+        }
+
+        if (a != null) {
+            a.getProductBoxArray().forEach((a) -> {
+//                System.out.println(a);
+                int id = a.getProductId();
+
+                g.setColor(a.getColor());
+                if (a.getSize() == 40) {
+                    drawBoxBigProduct(g, id);
+                }
+                if (a.getSize() == 30) {
+                    drawBoxMediumProduct(g, id);
+                }
+                if (a.getSize() == 20) {
+                    drawBoxASmallProduct(g, id);
+                }
+            });
+
         }
 
         Graphics2D g2 = (Graphics2D) g;
@@ -140,18 +223,14 @@ public class DrawPanel extends JPanel {
         g.setColor(Color.red);
 
         //groot pakket
-        a.getProductBoxArray().forEach((a) -> {
-            System.out.println(a);
-        });
-        g.fillRect(140, 350, 200, 200);
-
+        //g.fillRect(140, 350, 200, 200);
         //middel pakket
-        g.fillRect(440, 400, 200, 150);
-
+        // g.fillRect(440, 400, 200, 150);
         //klein pakket
-        g.fillRect(740, 450, 200, 100);
-
-        g.setColor(Color.yellow);
-        g.fillRect(140, 250, 200, 100);
+        // g.fillRect(740, 450, 200, 100);
+//        g.fillRect(140, 350, 200, 100);
+//
+//        g.setColor(Color.yellow);
+        //g.fillRect(140, 250, 200, 100);
     }
 }

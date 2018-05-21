@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Box {
 
     private int freeSpace;
-    
+
     private int boxSize;
 
     private ArrayList<Product> productBoxArray = new ArrayList<>();
@@ -47,7 +47,4 @@ public class Box {
         this.productBoxArray.clear();
         this.freeSpace = this.boxSize;
     }
-    
-    
-
 }
