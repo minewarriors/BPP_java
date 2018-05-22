@@ -13,6 +13,10 @@ public abstract class Algorithms {
 
     public static boolean firstFit(OrderInterface order, Box A, Box B, Box C) {
 
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
+
         ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
         ArrayList<Product> arrayA = new ArrayList<>();
         ArrayList<Product> arrayB = new ArrayList<>();
@@ -56,6 +60,10 @@ public abstract class Algorithms {
     }
 
     public static boolean BestFitDecreasing(OrderInterface order, Box A, Box B, Box C) {
+
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
 
         ArrayList<Box> boxArray = new ArrayList<>();
         boxArray.add(A);
@@ -112,15 +120,24 @@ public abstract class Algorithms {
     }
 
     public static boolean BinCompletion(OrderInterface order, Box A, Box B, Box C) {
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
         return false;
     }
 
     public static boolean OwnMethod(OrderInterface order, Box A, Box B, Box C) {
 
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
+
         int sizeCounter = 0;
         int lowerBound = 0;
         int box = 0;
-        int random;
+        int random1;
+        int random2;
+        int random3;
         int counter = 1;
         int orderSize = 0;
 
@@ -141,7 +158,8 @@ public abstract class Algorithms {
             }
             if (counter <= 10) {
                 ArrayList<Product> orderArray = order.getOrderPackages();
-                
+                sizeCounter = order.getOrderPackages().stream().map((a) -> a.getSize()).reduce(sizeCounter, Integer::sum);
+
                 while (box <= 3 && orderArray.size() > 0) {
                     if (box == 0) {
                         System.out.println("Round:" + counter);
@@ -150,10 +168,10 @@ public abstract class Algorithms {
                     }
                     if (box == 1) {
                         System.out.print("fill box A - ");
-                        random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                        if (A.AddProduct(orderArray.get(random), false)) {
-                            System.out.print("add " + orderArray.get(random));
-                            orderArray.remove(random);
+                        random1 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (A.AddProduct(orderArray.get(random1), true)) {
+                            System.out.print("add " + orderArray.get(random1));
+                            orderArray.remove(random1);
                             orderSize--;
                         } else {
                             System.out.print("denied ");
@@ -164,10 +182,10 @@ public abstract class Algorithms {
                     if (box == 2) {
                         System.out.println();
                         System.out.print("fill box B - ");
-                        random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                        if (B.AddProduct(orderArray.get(random), false)) {
-                            System.out.print("add " + orderArray.get(random));
-                            orderArray.remove(random);
+                        random2 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (B.AddProduct(orderArray.get(random2), true)) {
+                            System.out.print("add " + orderArray.get(random2));
+                            orderArray.remove(random2);
                             orderSize--;
                         } else {
                             System.out.print("denied ");
@@ -178,10 +196,10 @@ public abstract class Algorithms {
                     if (box == 3) {
                         System.out.println();
                         System.out.print("fill box C - ");
-                        random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                        if (C.AddProduct(orderArray.get(random), false)) {
-                            System.out.print("add " + orderArray.get(random));
-                            orderArray.remove(random);
+                        random3 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (C.AddProduct(orderArray.get(random3), true)) {
+                            System.out.print("add " + orderArray.get(random3));
+                            orderArray.remove(random3);
                             orderSize--;
                         } else {
                             System.out.print("denied ");
@@ -196,6 +214,9 @@ public abstract class Algorithms {
                     return true;
                 } else {
                     System.out.println("fail");
+                    A.clearBox();
+                    B.clearBox();
+                    C.clearBox();
                     box = 0;
                     counter++;
                 }
