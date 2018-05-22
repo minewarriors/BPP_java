@@ -51,7 +51,7 @@ public class BPPMainScreen extends JFrame implements ActionListener {
     DrawPanel dp = new DrawPanel(A, B, C);
 
     public BPPMainScreen() {
-        System.out.println("121");
+        System.out.println("111");
 
         setTitle("BPP");
         setSize(1080, 800);
@@ -156,6 +156,8 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                     } else {
                         System.out.println("---- Te weinig ruimte ----");
                     }
+                } else {
+                    System.out.println("Er is geen order toegevoegd!!! \n");
                 }
             }
 
@@ -167,6 +169,8 @@ public class BPPMainScreen extends JFrame implements ActionListener {
                     } else {
                         System.out.println("---- Te weinig ruimte ----");
                     }
+                } else {
+                    System.out.println("Er is geen order toegevoegd!!! \n");
                 }
             }
             this.order.print();
