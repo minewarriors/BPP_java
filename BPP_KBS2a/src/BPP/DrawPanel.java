@@ -111,18 +111,18 @@ public class DrawPanel extends JPanel {
 
                 check = true;
 
-                a.getProductBoxArray().forEach((productA) -> {
-                    if (productA == p) {
+                a.getProductBoxArray().forEach((product) -> {
+                    if (product == p) {
                         check = false;
                     }
                 });
-                b.getProductBoxArray().forEach((productA) -> {
-                    if (productA == p) {
+                b.getProductBoxArray().forEach((product) -> {
+                    if (product == p) {
                         check = false;
                     }
                 });
-                c.getProductBoxArray().forEach((productA) -> {
-                    if (productA == p) {
+                c.getProductBoxArray().forEach((product) -> {
+                    if (product == p) {
                         check = false;
                     }
                 });
