@@ -2,6 +2,7 @@ package BPPAlgorithms;
 
 import static BPP.BPPInterface.boxSize;
 import BPP.Box;
+import BPP.DrawPanel;
 import BPP.OrderInterface;
 import BPP.Product;
 import static BPPAlgorithms.Sort.sortBoxesInOrderByFreeSpace;
@@ -52,6 +53,7 @@ public abstract class Algorithms {
         leftOverArray.forEach((x) -> {
             System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
         });
+        DrawPanel.setLeftOverArray(leftOverArray);
         return leftOverArray.size() <= 0;
     }
 
@@ -107,6 +109,7 @@ public abstract class Algorithms {
         leftOverArray.forEach((x) -> {
             System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
         });
+        DrawPanel.setLeftOverArray(leftOverArray);
         return leftOverArray.size() <= 0;
 
     }
@@ -189,17 +192,18 @@ public abstract class Algorithms {
             System.out.println(box);
             if (box <= lowerBound) {
                 return true;
+
             } else {
                 //lowerBound--;
                 counter++;
                 box = 1;
             }
         }
-        if (counter >= 50){
+        if (counter >= 50) {
             return false;
         }
         return false;
-        
+
     }
 
 }

@@ -15,6 +15,9 @@ public class DrawPanel extends JPanel {
     private Box a;
     private Box b;
     private Box c;
+    private int y;
+    private ArrayList<Product> orderList;
+    private static ArrayList<Product> leftOverArray = new ArrayList<>();
 
     public DrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
@@ -23,10 +26,12 @@ public class DrawPanel extends JPanel {
         this.order = null;
         this.setPreferredSize(new Dimension(1080, 600));
         setBackground(Color.WHITE);
+
     }
 
     public void setOrder(Order order) {
         this.order = order;
+        orderList = order.getOrderPackages();
         repaint();
     }
 
@@ -97,143 +102,140 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    public void drawBoxBigProduct(Graphics g, int id) {
-        if (id > 0) {
-            int y = 0;
-            if (boxSize - a.getFreeSpace() == 60) {
-                y = 350;
-            }
-            if (boxSize - a.getFreeSpace() == 40) {
-                y = 250;
-            }
-            if (boxSize - a.getFreeSpace() == 30) {
-                y = 200;
-            }
-            if (boxSize - a.getFreeSpace() == 20) {
-                y = 150;
-            }
-            g.fillRect(140, y, 200, 200);
-        }
-    }
-
-    public void drawBoxMediumProduct(Graphics g, int id) {
-        if (id > 0) {
-            int y = 0;
-            if (boxSize - a.getFreeSpace() == 60) {
-                y = 450;
-            }
-            if (boxSize - a.getFreeSpace() == 40) {
-                y = 350;
-            }
-            if (boxSize - a.getFreeSpace() == 30) {
-                y = 300;
-            }
-            if (boxSize - a.getFreeSpace() == 20) {
-                y = 250;
-            }
-            g.fillRect(440, y, 200, 150);
-        }
-    }
-
-    public void drawBoxASmallProduct(Graphics g, int id) {
-        if (id > 0) {
-            int y = 0;
-            if (boxSize - a.getFreeSpace() == 60) {
-                y = 450;
-            }
-            if (boxSize - a.getFreeSpace() == 40) {
-                y = 350;
-            }
-            if (boxSize - a.getFreeSpace() == 30) {
-                y = 300;
-            }
-            if (boxSize - a.getFreeSpace() == 20) {
-                y = 250;
-            }
-            g.fillRect(140, y, 200, 100);
-        }
-    }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (order != null) {
-            ArrayList<Product> orderList = order.getOrderPackages();
 
             //kijken welke methode aangeroepen moet worden op grootte
-            for (Product p : orderList) {
-                int id = p.getProductId();
+            if (leftOverArray.size() > 0) {
+                for (Product p : leftOverArray) {
 
-                g.setColor(p.getColor());
-                if (p.getSize() == 40) {
-                    drawBigProduct(g, id);
+                    int id = p.getProductId();
+
+                    g.setColor(p.getColor());
+                    if (p.getSize() == 40) {
+                        drawBigProduct(g, id);
+                    }
+                    if (p.getSize() == 30) {
+                        drawMediumProduct(g, id);
+                    }
+                    if (p.getSize() == 20) {
+                        drawSmallProduct(g, id);
+                    }
                 }
-                if (p.getSize() == 30) {
-                    drawMediumProduct(g, id);
+            } else {
+                for (Product p : orderList) {
+
+                    int id = p.getProductId();
+
+                    g.setColor(p.getColor());
+                    if (p.getSize() == 40) {
+                        drawBigProduct(g, id);
+                    }
+                    if (p.getSize() == 30) {
+                        drawMediumProduct(g, id);
+                    }
+                    if (p.getSize() == 20) {
+                        drawSmallProduct(g, id);
+                    }
                 }
-                if (p.getSize() == 20) {
-                    drawSmallProduct(g, id);
-                }
+            }
+
+            if (a != null) {
+                y = 550;
+                a.getProductBoxArray().forEach((productA) -> {
+
+                    g.setColor(productA.getColor());
+
+                    if (productA.getSize() == 40) {
+
+                        g.fillRect(140, (y - 200), 200, 200);
+                        y -= 200;
+
+                    }
+
+                    if (productA.getSize() == 30) {
+
+                        g.fillRect(140, (y - 150), 200, 150);
+                        y -= 150;
+
+                    }
+
+                    if (productA.getSize() == 20) {
+
+                        g.fillRect(140, (y - 100), 200, 100);
+                        y -= 100;
+
+                    }
+
+                });
+            }
+            if (b != null) {
+                y = 550;
+                b.getProductBoxArray().forEach((productB) -> {
+
+                    g.setColor(productB.getColor());
+
+                    if (productB.getSize() == 40) {
+
+                        g.fillRect(440, (y - 200), 200, 200);
+                        y -= 200;
+
+                    }
+
+                    if (productB.getSize() == 30) {
+
+                        g.fillRect(440, (y - 150), 200, 150);
+                        y -= 150;
+
+                    }
+
+                    if (productB.getSize() == 20) {
+
+                        g.fillRect(440, (y - 100), 200, 100);
+                        y -= 100;
+
+                    }
+
+                });
+            }
+            if (c != null) {
+                y = 550;
+                c.getProductBoxArray().forEach((productC) -> {
+
+                    g.setColor(productC.getColor());
+
+                    if (productC.getSize() == 40) {
+
+                        g.fillRect(740, (y - 200), 200, 200);
+                        y -= 200;
+
+                    }
+
+                    if (productC.getSize() == 30) {
+
+                        g.fillRect(740, (y - 150), 200, 150);
+                        y -= 150;
+
+                    }
+
+                    if (productC.getSize() == 20) {
+
+                        g.fillRect(740, (y - 100), 200, 100);
+                        y -= 100;
+
+                    }
+
+                });
             }
         }
 
-        if (a != null) {
-            a.getProductBoxArray().forEach((a) -> {
-                int id = a.getProductId();
-
-                g.setColor(a.getColor());
-                if (a.getSize() == 40) {
-                    if (id > 0) {
-                        int y = 0;
-                        if (boxSize - this.a.getFreeSpace() == 60) {
-                            y = 350;
-                        }
-                        if (boxSize - this.a.getFreeSpace() == 40) {
-                            y = 250;
-                        }
-                        g.fillRect(140, y, 200, 200);
-                    }
-                    if (a.getSize() == 30) {
-                        if (id > 0) {
-                            int y = 0;
-                            if (boxSize - this.a.getFreeSpace() == 60) {
-                                y = 400;
-                            }
-                            if (boxSize - this.a.getFreeSpace() == 40) {
-                                y = 300;
-                            }
-                            if (boxSize - this.a.getFreeSpace() == 30) {
-                                y = 250;
-                            }
-                            g.fillRect(140, y, 200, 150);
-                        }
-                        if (a.getSize() == 20) {
-                            if (id > 0) {
-                                int y = 0;
-                                if (boxSize - this.a.getFreeSpace() == 60) {
-                                    y = 450;
-                                }
-                                if (boxSize - this.a.getFreeSpace() == 40) {
-                                    y = 350;
-                                }
-                                if (boxSize - this.a.getFreeSpace() == 30) {
-                                    y = 300;
-                                }
-                                if (boxSize - this.a.getFreeSpace() == 20) {
-                                    y = 250;
-                                }
-                                g.fillRect(140, y, 200, 100);
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(5));
 
+        g2.setStroke(new BasicStroke(5));
         //box 1
         g2.setColor(Color.black);
+
         g2.drawLine(135, 250, 135, 550);
         g2.drawLine(345, 552, 135, 552);
         g2.drawLine(345, 250, 345, 550);
@@ -247,18 +249,10 @@ public class DrawPanel extends JPanel {
         g2.drawLine(735, 250, 735, 550);
         g2.drawLine(945, 552, 735, 552);
         g2.drawLine(945, 250, 945, 550);
-
-        g.setColor(Color.red);
-
-        //groot pakket
-        //g.fillRect(140, 350, 200, 200);
-        //middel pakket
-        // g.fillRect(440, 400, 200, 150);
-        //klein pakket
-        // g.fillRect(740, 450, 200, 100);
-//        g.fillRect(140, 350, 200, 100);
-//
-//        g.setColor(Color.yellow);
-        //g.fillRect(140, 250, 200, 200);
     }
+
+    public static void setLeftOverArray(ArrayList<Product> leftOverArray) {
+        DrawPanel.leftOverArray = leftOverArray;
+    }
+
 }
