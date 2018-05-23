@@ -57,7 +57,7 @@ public abstract class Algorithms {
         leftOverArray.forEach((x) -> {
             System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
         });
-        DrawPanel.setLeftOverArray(leftOverArray);
+
         return leftOverArray.size() <= 0;
     }
 
@@ -117,7 +117,7 @@ public abstract class Algorithms {
         leftOverArray.forEach((x) -> {
             System.out.println("Let op! --- " + x + " --- Kan niet worden toegevoegd. Want er zijn te weinig kisten");
         });
-        DrawPanel.setLeftOverArray(leftOverArray);
+
         return leftOverArray.size() <= 0;
 
     }
@@ -233,16 +233,16 @@ public abstract class Algorithms {
                 counter++;
                 box = 1;
             }
-        
-        if (counter >= 50) {
+
+            if (counter >= 50) {
+                return false;
+            }
+
+            if (counter >= 10) {
+                lowerBound++;
+                counter = 0;
+            }
             return false;
         }
-
-        if (counter >= 10) {
-            lowerBound++;
-            counter = 0;
-        }
-        return false;
-    }
     }
 }

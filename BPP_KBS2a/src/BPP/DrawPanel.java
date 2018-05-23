@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel {
     private Box c;
     private int y;
     private ArrayList<Product> orderList;
-    private static ArrayList<Product> leftOverArray = new ArrayList<>();
+    private boolean check = true;
 
     public DrawPanel(Box boxA, Box boxB, Box boxC) {
         this.a = boxA;
@@ -107,25 +107,27 @@ public class DrawPanel extends JPanel {
         if (order != null) {
 
             //kijken welke methode aangeroepen moet worden op grootte
-            if (leftOverArray.size() > 0) {
-                for (Product p : leftOverArray) {
+            for (Product p : orderList) {
 
-                    int id = p.getProductId();
+                check = true;
 
-                    g.setColor(p.getColor());
-                    if (p.getSize() == 40) {
-                        drawBigProduct(g, id);
+                a.getProductBoxArray().forEach((productA) -> {
+                    if (productA == p) {
+                        check = false;
                     }
-                    if (p.getSize() == 30) {
-                        drawMediumProduct(g, id);
+                });
+                b.getProductBoxArray().forEach((productA) -> {
+                    if (productA == p) {
+                        check = false;
                     }
-                    if (p.getSize() == 20) {
-                        drawSmallProduct(g, id);
+                });
+                c.getProductBoxArray().forEach((productA) -> {
+                    if (productA == p) {
+                        check = false;
                     }
-                }
-            } else {
-                for (Product p : orderList) {
+                });
 
+                if (check) {
                     int id = p.getProductId();
 
                     g.setColor(p.getColor());
@@ -232,27 +234,32 @@ public class DrawPanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.setStroke(new BasicStroke(5));
+        g2.setStroke(
+                new BasicStroke(5));
         //box 1
         g2.setColor(Color.black);
 
-        g2.drawLine(135, 250, 135, 550);
-        g2.drawLine(345, 552, 135, 552);
-        g2.drawLine(345, 250, 345, 550);
+        g2.drawLine(
+                135, 250, 135, 550);
+        g2.drawLine(
+                345, 552, 135, 552);
+        g2.drawLine(
+                345, 250, 345, 550);
 
         //box 2
-        g2.drawLine(435, 250, 435, 550);
-        g2.drawLine(645, 552, 435, 552);
-        g2.drawLine(645, 250, 645, 550);
+        g2.drawLine(
+                435, 250, 435, 550);
+        g2.drawLine(
+                645, 552, 435, 552);
+        g2.drawLine(
+                645, 250, 645, 550);
 
         //box 3
-        g2.drawLine(735, 250, 735, 550);
-        g2.drawLine(945, 552, 735, 552);
-        g2.drawLine(945, 250, 945, 550);
+        g2.drawLine(
+                735, 250, 735, 550);
+        g2.drawLine(
+                945, 552, 735, 552);
+        g2.drawLine(
+                945, 250, 945, 550);
     }
-
-    public static void setLeftOverArray(ArrayList<Product> leftOverArray) {
-        DrawPanel.leftOverArray = leftOverArray;
-    }
-
 }
