@@ -224,30 +224,25 @@ public abstract class Algorithms {
                     counter++;
                 }
             }
-<<<<<<< HEAD
             System.out.println();
             System.out.println(box);
             if (box <= lowerBound) {
                 return true;
-
             } else {
                 //lowerBound--;
                 counter++;
                 box = 1;
             }
-        }
+        
         if (counter >= 50) {
             return false;
         }
-        return false;
 
-=======
-            if (counter >= 10) {
-                lowerBound++;
-                counter = 0;
-            }
+        if (counter >= 10) {
+            lowerBound++;
+            counter = 0;
         }
->>>>>>> f9484b36753dda8d82c0f2e4d64a9f7c50a59ad1
+        return false;
     }
-
+    }
 }
