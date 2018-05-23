@@ -14,6 +14,10 @@ public abstract class Algorithms {
 
     public static boolean firstFit(OrderInterface order, Box A, Box B, Box C) {
 
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
+
         ArrayList<Product> sortedArray = sortProductsInOrderBySize(order.getOrderPackages(), true);
         ArrayList<Product> arrayA = new ArrayList<>();
         ArrayList<Product> arrayB = new ArrayList<>();
@@ -58,6 +62,10 @@ public abstract class Algorithms {
     }
 
     public static boolean BestFitDecreasing(OrderInterface order, Box A, Box B, Box C) {
+
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
 
         ArrayList<Box> boxArray = new ArrayList<>();
         boxArray.add(A);
@@ -115,13 +123,26 @@ public abstract class Algorithms {
     }
 
     public static boolean BinCompletion(OrderInterface order, Box A, Box B, Box C) {
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
         return false;
     }
 
     public static boolean OwnMethod(OrderInterface order, Box A, Box B, Box C) {
 
+        A.clearBox();
+        B.clearBox();
+        C.clearBox();
+
         int sizeCounter = 0;
         int lowerBound = 0;
+        int box = 0;
+        int random1;
+        int random2;
+        int random3;
+        int counter = 1;
+        int orderSize = 0;
 
         sizeCounter = order.getOrderPackages().stream().map((a) -> a.getSize()).reduce(sizeCounter, Integer::sum);
 
@@ -131,63 +152,79 @@ public abstract class Algorithms {
             lowerBound = (sizeCounter / boxSize);
         }
 
-        int box = 1;
-        int random;
-        int counter = 0;
-
         System.out.println("lowerBound - " + lowerBound);
 
-        while (counter <= 50) {
-            if (lowerBound <= 0 || lowerBound > 3) {
+        while (true) {
+
+            if (lowerBound > 3) {
                 return false;
             }
-            System.out.println("New Round - ");
-            ArrayList<Product> orderArray = order.getOrderPackages();
-            int orderSize = orderArray.size();
-            while (box <= 3 && orderArray.size() > 0) {
+            if (counter <= 10) {
+                ArrayList<Product> orderArray = order.getOrderPackages();
+                sizeCounter = order.getOrderPackages().stream().map((a) -> a.getSize()).reduce(sizeCounter, Integer::sum);
 
-                if (box == 1) {
-                    System.out.println();
-                    System.out.print("fill box A - ");
-                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                    if (A.AddProduct(orderArray.get(random), false)) {
-                        System.out.print("add " + orderArray.get(random));
-                        orderArray.remove(random);
-                        orderSize--;
-                    } else {
-                        System.out.print("denied ");
+                while (box <= 3 && orderArray.size() > 0) {
+                    if (box == 0) {
+                        System.out.println("Round:" + counter);
+                        orderSize = orderArray.size();
                         box++;
+                    }
+                    if (box == 1) {
+                        System.out.print("fill box A - ");
+                        random1 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (A.AddProduct(orderArray.get(random1), true)) {
+                            System.out.print("add " + orderArray.get(random1));
+                            orderArray.remove(random1);
+                            orderSize--;
+                        } else {
+                            System.out.print("denied ");
+                            box++;
+                        }
+                    }
+
+                    if (box == 2) {
+                        System.out.println();
+                        System.out.print("fill box B - ");
+                        random2 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (B.AddProduct(orderArray.get(random2), true)) {
+                            System.out.print("add " + orderArray.get(random2));
+                            orderArray.remove(random2);
+                            orderSize--;
+                        } else {
+                            System.out.print("denied ");
+                            box++;
+                        }
+                    }
+
+                    if (box == 3) {
+                        System.out.println();
+                        System.out.print("fill box C - ");
+                        random3 = ThreadLocalRandom.current().nextInt(0, orderSize);
+                        if (C.AddProduct(orderArray.get(random3), true)) {
+                            System.out.print("add " + orderArray.get(random3));
+                            orderArray.remove(random3);
+                            orderSize--;
+                        } else {
+                            System.out.print("denied ");
+                            box++;
+                        }
                     }
                 }
-
-                if (box == 2) {
-                    System.out.println();
-                    System.out.print("fill box B - ");
-                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                    if (B.AddProduct(orderArray.get(random), false)) {
-                        System.out.print("add " + orderArray.get(random));
-                        orderArray.remove(random);
-                        orderSize--;
-                    } else {
-                        System.out.print("denied ");
-                        box++;
-                    }
-                }
-
-                if (box == 3) {
-                    System.out.println();
-                    System.out.print("fill box C - ");
-                    random = ThreadLocalRandom.current().nextInt(0, orderSize);
-                    if (C.AddProduct(orderArray.get(random), false)) {
-                        System.out.print("add " + orderArray.get(random));
-                        orderArray.remove(random);
-                        orderSize--;
-                    } else {
-                        System.out.print("denied ");
-                        box++;
-                    }
+                System.out.println();
+                System.out.println("boxes used " + box);
+                if (box <= lowerBound && box != 0) {
+                    System.out.println("succes");
+                    return true;
+                } else {
+                    System.out.println("fail");
+                    A.clearBox();
+                    B.clearBox();
+                    C.clearBox();
+                    box = 0;
+                    counter++;
                 }
             }
+<<<<<<< HEAD
             System.out.println();
             System.out.println(box);
             if (box <= lowerBound) {
@@ -204,6 +241,13 @@ public abstract class Algorithms {
         }
         return false;
 
+=======
+            if (counter >= 10) {
+                lowerBound++;
+                counter = 0;
+            }
+        }
+>>>>>>> f9484b36753dda8d82c0f2e4d64a9f7c50a59ad1
     }
 
 }
